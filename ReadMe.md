@@ -26,3 +26,5 @@ Follow these steps to set up your own course repository:
 
 6. When you've completed a challenge and want to share it for code review, commit your work and push it to your own remote repo with:
 `git push`
+
+nice!S
