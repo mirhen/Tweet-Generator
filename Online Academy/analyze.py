@@ -1,11 +1,13 @@
+import re
 
-def histogram(filename):
-    content = []
+def histogram(string):
+    content = string.split()
     list2 = {}  #this is a new list
-    with open(filename,'r') as f:
-        for line in f:
-            for word in line.split():
-                content.append(word)
+    # with open(filename,'r') as f:
+    #     for line in f:
+    #         for word in line.split():
+    #             word = re.sub('[0123456789!".,:?-]','', word.lower())
+    #             content.append(word)
 
     for word in content:
         if word in list2:
@@ -20,13 +22,17 @@ def unique_words(hist):
     for word in hist:
         if hist[word] == 1:
             count += 1
-    return count
-def frequency(hist, string):
-    return hist[string]
+    return len(hist)
 
+def frequency(hist, string):
+    # if string in hist:
+    #     return hist[string]
+    # return 0
+    # hist.get(string, 0)
+    return hist[string] if string in hist else 0
 
 if __name__ == '__main__':
-    hist = histogram('madeline.txt')
+    hist = histogram('Texts/genesis.txt')
     count = unique_words(hist)
-    freq = frequency(hist, 'the')
-    print count, freq
+    freq = frequency(hist, 'just')
+    print count, freq, hist
