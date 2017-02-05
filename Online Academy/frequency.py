@@ -1,6 +1,6 @@
 import collections
 
-a = 'one fish two fish red fish blue fish'
+text = 'one fish two fish red fish blue fish'
 
 def histogram(string):
     content = string.split()
@@ -12,13 +12,18 @@ def histogram(string):
             list2[word] = 1
     return list2
 
+def total_words(list):
+    content = list.split()
+    return len(content)
 
 def sample_by_freq(histogram):
-    total_words = 0
-    for word in histogram:
-        total_words += histogram[word]
-    print total_words
+
+    total =  total_words(text)
+    print 'There are %s words' % total
+
+    for words in histogram:
+        
 
 if __name__ == '__main__':
-    hist = histogram(a)
+    hist = histogram(text)
     sample_by_freq(hist)
