@@ -1,52 +1,25 @@
 import collections
 import random
 import operator
-
-text = 'one fish two fish red fish blue fish blue blue blue blue'
-
-def histogram(filename):
-    with open(filename,'r') as f:
-        content = f.read()
-        print content
-    content = content.split()
-    list2 = {}  #this is a new list
-    for word in content:
-        if word in list2:
-            list2[word] += 1
-        else:
-            list2[word] = 1
-    return list2
-
-def total_words(hist):
-    total = 0
-    for word in hist:
-        total += hist[word]
-    return total
-
-def random_number(limit):
-    rand_num = random.randint(1, limit)
-    return rand_num
+import analyze
 
 def frequency(hist, word):
-    total = total_words(hist)
-
+    total = sum(hist.values())
     word = hist[word]
     return float(word)/float(total)
 
 def sochastic(histogram):
     tuples = [(0,'')]
     count = 0
-    total =  total_words(histogram)
-    print 'There are %s words' % total
 
     for word in histogram:
         count += histogram[word]
         tuples.append((count, word))
-    tuples = sorted(tuples, key=lambda tup: tup[0])
-    print tuples
 
-    rand_num = random_number(total)
+    tuples = sorted(tuples, key=lambda tup: tup[0])
+    rand_num = random.randint(1, total)
     j = 0
+
     print 'rand_num',rand_num
 
     for x in tuples:
@@ -58,8 +31,8 @@ def sochastic(histogram):
             return tuples[j][1]
 
 if __name__ == '__main__':
-    hist = histogram('Texts/madeline.txt')
+    hist = analyze.histogram('Texts/madeline.txt')
 
-    random_word = sochastic(hist)
-    freq = frequency(hist, random_word)
-    print '\nUsing Sochastic Sampling \n\nRandom word chosen is', random_word, '\nChance of that word getting chosen:', freq, '\n\n'
+    chosen_word = sochastic(hist)
+    freq = frequency(hist, chosen_word)
+    print '\nUsing Sochastic Sampling \n\nRandom word chosen is', chosen_word, '\nChance of that word getting chosen:', freq, '\n\n'

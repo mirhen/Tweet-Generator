@@ -1,13 +1,14 @@
 import re
 
-def histogram(string):
-    content = string.split()
+def histogram(filename):
+    content = []
+    # content = string.split()
     list2 = {}  #this is a new list
-    # with open(filename,'r') as f:
-    #     for line in f:
-    #         for word in line.split():
-    #             word = re.sub('[0123456789!".,:?-]','', word.lower())
-    #             content.append(word)
+    with open(filename,'r') as f:
+        for line in f:
+            for word in line.split():
+                word = re.sub('[0123456789!".,:?-]','', word.lower())
+                content.append(word)
 
     for word in content:
         if word in list2:
