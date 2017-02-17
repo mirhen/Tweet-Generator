@@ -8,7 +8,8 @@ def frequency(hist, word):
     word = hist[word]
     return float(word)/float(total)
 
-def sochastic(histogram):
+def sample_word(histogram):
+    total = sum(histogram.values())
     tuples = [(0,'')]
     count = 0
 
@@ -19,8 +20,6 @@ def sochastic(histogram):
     tuples = sorted(tuples, key=lambda tup: tup[0])
     rand_num = random.randint(1, total)
     j = 0
-
-    print 'rand_num',rand_num
 
     for x in tuples:
         if j < len(tuples) - 1:
@@ -33,6 +32,6 @@ def sochastic(histogram):
 if __name__ == '__main__':
     hist = analyze.histogram('Texts/madeline.txt')
 
-    chosen_word = sochastic(hist)
+    chosen_word = sample_word(hist)
     freq = frequency(hist, chosen_word)
     print '\nUsing Sochastic Sampling \n\nRandom word chosen is', chosen_word, '\nChance of that word getting chosen:', freq, '\n\n'
