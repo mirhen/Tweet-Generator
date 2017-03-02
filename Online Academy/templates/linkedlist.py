@@ -76,18 +76,41 @@ class LinkedList(object):
         """Delete the given item from this linked list, or raise ValueError"""
         node = Node(item)
         current = self.head
+        if current != None:
+            if current.data==item:
+                temp = current.next
+                del current
+                self.head = temp
 
-        while current != node:
-            if current.next != None:
-                current = current.next
+                if self.head == None:
+                    self.tail = None
+            else:
+                  current = self.head
+                  print(current)
+                  while current.next.data != item:
+                      current = current.next
+                  print(item)
+                  temp = current.next.next
+                  del current.next
+                  current.next = temp
+                  print(temp)
+                  if current.next is None:
+
+                      if self.tail.data == item:
+
+                          self.tail = current
         else:
-            current.next = current.next.next
-
+              raise ValueError('Item not found: {}'.format(item))
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality"""
-        # TODO: find item where quality(item) is True
-        pass
+
+        current = self.head
+        if quality is current.data:
+            return current.data
+        current = current.next
+        return None
+
 
 
 def test_linked_list():
@@ -101,17 +124,26 @@ def test_linked_list():
     print(ll)
     print('head: ' + str(ll.head))
     print('tail: ' + str(ll.tail))
-    print(ll.length())
+    # print(ll.length())
+    print('About to run delete function')
+    # ll.delete('A')
 
-    ll.delete('A')
-    print(ll)
-    ll.delete('C')
-    print(ll)
-    ll.delete('B')
+    # print(ll)
+    # print('head: ' + str(ll.head))
+    # print('tail: ' + str(ll.tail))
+    # ll.delete('C')
+    # print(ll)
+    # print('head: ' + str(ll.head))
+    # print('tail: ' + str(ll.tail))
+    # ll.delete('B')
+    # print(ll)
+    # print('head: ' + str(ll.head))
+    # print('tail: ' + str(ll.tail))
+    ll.delete('D')
     print(ll)
     print('head: ' + str(ll.head))
     print('tail: ' + str(ll.tail))
-    print(ll.length())
+    # print(ll.length())
 
 
 if __name__ == '__main__':
